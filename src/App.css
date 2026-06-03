@@ -23,11 +23,15 @@ html {
     background-repeat: no-repeat;
 
     scrollbar-width: none;
+
+    scroll-behavior: smooth;
+
 }
 
 hr {
-    border-color: black;
-    width: auto;
+    border-width: 1px;
+    border-color: var(--sec-color-1);
+    width: 100%;
 }
 
 header {
@@ -39,11 +43,14 @@ header {
     justify-content: space-between;
     color: var(--sec-color-1);
 
-    background-color: var(--pri-color-1);
+    /*background-color: var(--pri-color-1);*/
 
+    /*border: 1px solid var(--sec-color-1);*/
     border-radius: 1rem;
     padding: 8px;
     margin-inline: 16px;
+
+    filter: drop-shadow(0px 2px .1rem var(--pri-color-1));
 
     & span {
         font-family: var(--font-poppins);
@@ -69,7 +76,12 @@ footer {
 
 /* --- CLASS --- */
 
-.noButtonStyle{
+.pageBreaker{
+    width: 100%;
+    height: 160px;
+}
+
+.noButtonStyle {
     border: none;
     background: none;
     height: fit-content;
@@ -145,8 +157,8 @@ footer {
 
 /* --- ID --- */
 
-#wabbanode{
-    & svg{
+#wabbanode {
+    & svg {
         transform: rotate(-135deg);
         z-index: 0;
     }
@@ -166,8 +178,8 @@ footer {
 
     z-index: 5;
 
-    @media screen and (min-width: 768px){
-        & header{
+    @media screen and (min-width: 768px) {
+        & header {
             & #tablet_nav {
                 display: flex;
 
@@ -182,6 +194,11 @@ footer {
                 & ul li a {
                     gap: 4px;
                     display: flex;
+
+                    transition: translate .25s;
+                    &:hover{
+                        translate: 0 -4px;
+                    }
                 }
 
                 & ul li a svg {
@@ -204,11 +221,10 @@ footer {
         #phone_nav {
             display: none;
         }
-
     }
 
     & #tablet_nav {
-            display: none;
+        display: none;
     }
 
     & #modpackLogo {
@@ -227,7 +243,7 @@ footer {
         }
     }
 
-    & #nav-title{
+    & #nav-title {
         font-family: var(--font-poppins);
         font-size: 1rem;
     }
@@ -343,6 +359,10 @@ footer {
         flex-direction: column;
         align-items: center;
 
+        gap: 32px;
+
+        padding-inline: 32px;
+
         @media screen and (min-width: 540px) {
         }
 
@@ -352,7 +372,8 @@ footer {
             flex-direction: column;
             justify-content: center;
             font-size: 3rem;
-            & #heroTitle {
+
+            /*& #heroTitle {
                 font-size: 10rem;
                 color: transparent;
                 background: linear-gradient(
@@ -362,7 +383,7 @@ footer {
                 );
                 background-clip: text;
                 background-size: contain;
-            }
+            }*/
 
             & #heroDesc {
                 font-size: inherit;
@@ -374,6 +395,8 @@ footer {
         }
 
         & #heroTitle {
+            width: 100%;
+            max-width: 540px;
             color: var(--accent-color-1);
             margin: 0;
         }
@@ -381,7 +404,6 @@ footer {
         & #heroDesc {
             color: var(--sec-color-1);
             text-align: center;
-            padding-inline: 32px;
         }
 
         & #heroLinkWrapper {
@@ -423,82 +445,84 @@ footer {
     & section {
         display: flex;
         flex-direction: column;
-        justify-content: end;
+        justify-content: center;
         align-items: center;
 
-        height: 100vh;
-        min-height: 720px;
+        height: fit-content;
+        min-height: 100vh;
 
-        padding: 16px;
+        padding: 32px;
 
-        background-color: var(--sec-color-1);
-        background-size: cover;
+        background-color: var(--pri-color-1);
+        background-size: 100%;
         background-repeat: no-repeat;
         background-position: center;
-
-        font-size: 2rem;
+        background-attachment: fixed;
 
         color: var(--sec-color-1);
 
-        & .hrefLink{
+        & .hrefLink {
             color: var(--accent-color-1);
         }
 
-        & h3{
-            filter: drop-shadow(-4px 4px .1rem var(--pri-color-1));
+        & h3 {
+            font-family: var(--font-poppins);
+            font-size: 1.5rem;
+
+            filter: drop-shadow(-4px 4px 0.1rem var(--pri-color-1));
         }
 
-        @media screen and (min-width: 768px){
+        @media screen and (min-width: 768px) {
             font-size: 5rem;
-        }
 
+            height: 1080px;
+        }
     }
 
     & section:nth-last-of-type(even) {
-        background-color: var(--accent-color-1);
 
-        & h3{
+        & h3 {
             text-align: end;
         }
-
     }
 
-
-    & section:nth-of-type(1){
-        background-image: url("/assets/create_example.webp");
+    & section:nth-of-type(1) {
+        background-image: url("/assets/create.webp");
     }
-    & section:nth-of-type(2){
-        background-image: url("/assets/websiteImages/JungleTemple.png");
+    & section:nth-of-type(2) {
+        background-image: url("/assets/moogs.webp");
     }
-    & section:nth-of-type(3){
-        background-image: url("/assets/websiteImages/Cave.png");
+    & section:nth-of-type(3) {
+        background-image: url("/assets/hamster.webp");
     }
-    & section:nth-of-type(4){
-        background-image: url("/assets/websiteImages/Dungeon.png");
+    & section:nth-of-type(4) {
+        background-image: url("/assets/sophis.webp");
     }
-    & section:nth-of-type(5){
-        background-image: url("/assets/websiteImages/IceCave.png");
+    & section:nth-of-type(5) {
+        background-image: url("/assets/carryon.webp");
     }
-
-
 }
 
-#cta{
+#cta {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 8px;
 
     padding: 16px;
 
-    background-color: var(--sec-color-1);
+    background-color: var(--pri-color-1);
 
-    & div:nth-of-type(1){
-        padding-block: 32px;
-    }
+    height: 100vh;
+    min-height: fit-content;
 
-    & h2{
+    & h2 {
         font-size: 3rem;
         margin-block: 32px;
+
+        color: var(--sec-color-1);
+
+        text-align: center;
     }
 
     & #discordEmbed {
@@ -506,54 +530,74 @@ footer {
         margin-inline: auto;
     }
 
-    & .linkButtons{
+    & .linkButtons {
         color: var(--pri-color-1);
         width: fit-content;
-        padding: 8px;
+        padding: 8px 16px 8px 16px;
+
+        margin-inline: auto;
+
+
     }
 
-    @media screen and (min-width: 768px){
+    & img{
+        width: 100%;
+        max-width: 540px;
+    }
+
+    @media screen and (min-width: 768px) {
         flex-direction: row;
 
-        & div:nth-of-type(1){
-            width: 50%;
-        }
-
-        & h2{
+        & h2 {
             font-size: 4rem;
         }
 
-        & #discordEmbed{
+        & #discordEmbed {
             width: 50%;
         }
 
-        & .linkButtons{
+        & .linkButtons {
             font-size: 2rem;
+            padding-inline: 32px;
         }
     }
 }
 
+#discordSection{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    align-items: center;
+
+    & h3{
+        font-size: 3rem;
+    }
+
+
+
+
+}
+
 #footerWrapper {
     gap: 16px;
+
     margin-inline: auto;
     margin-block: 0px;
-    max-width: var(--cutoffSize);
 
-    padding-inline: 16px;
-    padding-block: 32px;
-
-
-    background: linear-gradient(to bottom, var(--sec-color-1) 25%, var(--accent-color-1) 100%);
-    background-size: 128px;
-    background-position: 95%;
-    background-repeat: no-repeat;
     background-color: var(--accent-color-1);
 
-    & .row{
+    & footer{
+        padding-block: 32px;
+    }
+
+    & .flex{
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 32px;
+        justify-content: space-around;
         width: 100%;
+        align-items: center;
     }
 
     & img {
@@ -561,7 +605,7 @@ footer {
         width: 32px;
     }
 
-    & .footer_link{
+    & .footer_link {
         color: var(--pri-color-1);
     }
 
@@ -575,7 +619,7 @@ footer {
         gap: 16px;
 
         justify-content: space-evenly;
-        width: 100%;
+        width: fit-content;
 
         & div {
             display: flex;
@@ -585,7 +629,7 @@ footer {
     }
 
     & .footerLinkHeader {
-        color: var(--pri-color-1);
+        color: var(--sec-color-1);
         display: block;
         text-align: center;
 
@@ -597,6 +641,8 @@ footer {
     }
 
     & #legal_disclaimer {
+        margin-block: 32px;
+
         max-width: 360px;
         text-align: center;
 
@@ -605,10 +651,10 @@ footer {
         }
     }
 
-    @media screen and (min-width: 768px){
+    @media screen and (min-width: 768px) {
         background-position: 75%;
 
-        & .footerLinkHeader{
+        & .footerLinkHeader {
             font-size: 1.5rem;
         }
 
@@ -623,17 +669,17 @@ footer {
             gap: 8px;
             align-items: start;
 
-            & div{
+            & div {
                 width: 160px;
             }
         }
 
-        & .footer_link{
+        & .footer_link {
             font-size: 1.25rem;
 
             padding-inline: 8px;
 
-            &::before{
+            &::before {
                 display: inline-block;
 
                 height: 0rem;
@@ -641,12 +687,14 @@ footer {
                 content: "";
 
                 background-size: 0rem;
-                transition: background-size .25s, height .25s, width .25s;
+                transition:
+                    background-size 0.25s,
+                    height 0.25s,
+                    width 0.25s;
             }
 
-            &:hover{
-
-                &::before{
+            &:hover {
+                &::before {
                     display: inline-block;
                     content: "";
 
@@ -658,18 +706,14 @@ footer {
                     background-repeat: no-repeat;
                     background-position: center;
 
-                    rotate: -90deg;
+                    rotate: 225deg;
                     padding-inline: 4px;
                     padding-block: 0px;
                 }
-
             }
-
-
         }
 
-        & #legal_disclaimer{
-
+        & #legal_disclaimer {
         }
     }
 }
@@ -677,7 +721,7 @@ footer {
 /* wrappers */
 
 #wrapper_downloads {
-    background-color: var(--sec-color-1);
+    background-color: var(--pri-color-1);
     height: 1080px;
 }
 
@@ -695,7 +739,15 @@ footer {
     #heroLinkWrapper {
         margin-block: 32px;
     }
+
+    & .pageBreaker{
+        height: 200px;
+    }
 }
 
 @media screen and (min-width: 960px) {
+    & .pageBreaker{
+        height: 240px;
+    }
+
 }

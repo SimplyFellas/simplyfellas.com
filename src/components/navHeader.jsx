@@ -77,7 +77,7 @@ export default function NavHeader() {
           animate="show"
           whileTap={{ scale: 0.9 }}
         >
-          <span>MENU</span>
+          <span>{ !navOpened ? "Menu" : "Close" }</span>
         </motion.button>
 
         {/* tablet and desktop size nav*/}

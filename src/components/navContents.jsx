@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 
 import { containerAnimation, itemAnimation } from "../variables/motionVariables";
-import { arrow_svg, discord_svg, faq_svg, github_svg } from "./graphics";
+import { arrow_svg, discord_svg, download_svg, faq_svg, github_svg, question_svg } from "./graphics";
 import { Link } from "react-router-dom";
 
 import urls from "../variables/url_links.json"
@@ -15,14 +15,14 @@ export function NavContents() {
       >
         <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
           <Link to={"/downloads"}>
-            {arrow_svg}
+            {download_svg}
             <span className="link-size-1">Download</span>
           </Link>
         </motion.li>
 
         <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
           <a href={urls.urls.simplyFellasWiki} target="blank">
-            {faq_svg}
+            {question_svg}
             <span className="link-size-1">Wiki</span>
           </a>
         </motion.li>

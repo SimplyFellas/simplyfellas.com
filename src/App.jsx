@@ -9,6 +9,7 @@ import {
   itemAnimation,
   sectionsAnimation,
 } from "./variables/motionVariables";
+import PageFx from "./pageFx/pageFx";
 
 function MakeLink({ url, text }) {
   return (
@@ -22,7 +23,8 @@ export function Foot() {
   return (
     <div id="footerWrapper">
       <footer>
-        <div className="row">
+
+        <div className="flex">
           <button
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -64,9 +66,16 @@ export function Foot() {
   );
 }
 
+function Breaker() {
+  return (
+    <div className="pageBreaker"></div>
+  )
+}
+
+// only use whileinView below the fold
 function App() {
   return (
-    <>
+    <PageFx>
       <NavHeader />
 
       <motion.main id="heroWrapper">
@@ -75,14 +84,16 @@ function App() {
           id="hero"
           variants={containerAnimation}
           initial="hide"
-          whileInView="show"
-          viewport={{ once: true }}
+          animate="show"
+          viewport={{ once: false, amount: 0.1}}
         >
-          <motion.h1 id="heroTitle" variants={itemAnimation}>
-            SimplyFellas
-          </motion.h1>
+          <motion.img
+            id="heroTitle"
+            src="./assets/SimplyFellasTitle.svg"
+            variants={itemAnimation}>
+          </motion.img>
           <motion.p id="heroDesc" variants={itemAnimation}>
-            A vanilla+ modpack crafted to enhance the Minecraft you already know
+            A vanilla+ modpack to enhance the Minecraft you already know
             & love!
           </motion.p>
 
@@ -91,8 +102,8 @@ function App() {
             id="heroLinkWrapper"
             variants={containerAnimation}
             initial="hide"
-            whileInView="show"
-            viewport={{ once: true }}
+            animate="show"
+            viewport={{ once: false, amount: 0.1 }}
           >
             <motion.span variants={itemAnimation}>
               <Link to={"/downloads"} className="linkButtons">
@@ -117,12 +128,13 @@ function App() {
         </motion.section>
       </motion.main>
 
+      {/* breaker */}
       <motion.section
         id="modShowcase"
         variants={containerAnimation}
         initial="hide"
-        whileInView="show"
-        viewport={{ once: true }}
+        animate="show"
+        viewport={{ once: false, amount: 0.1 }}
       >
         <h2>
           With <strong>150+</strong> mods, you'll always experience something
@@ -130,12 +142,13 @@ function App() {
         </h2>
       </motion.section>
 
+      {/* mod sections */}
       <section id="about">
         <motion.section
           variants={sectionsAnimation}
           initial="hide"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <h3>
             Automate your world with{" "}
@@ -145,11 +158,13 @@ function App() {
           </h3>
         </motion.section>
 
+        <Breaker />
+
         <motion.section
           variants={sectionsAnimation}
           initial="hide"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <h3>
             Find hidden treastures with{" "}
@@ -159,11 +174,13 @@ function App() {
           </h3>
         </motion.section>
 
+        <Breaker/>
+
         <motion.section
           variants={sectionsAnimation}
           initial="hide"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <h3>
             Adopt your very own tiny{" "}
@@ -173,11 +190,13 @@ function App() {
           </h3>
         </motion.section>
 
+        <Breaker/>
+
         <motion.section
           variants={sectionsAnimation}
           initial="hide"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <h3>
             Too many chests? try{" "}
@@ -187,11 +206,13 @@ function App() {
           </h3>
         </motion.section>
 
+        <Breaker/>
+
         <motion.section
           variants={sectionsAnimation}
           initial="hide"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: false, amount: 0.1 }}
         >
           <h3>
             Do a little trolling with{" "}
@@ -202,13 +223,30 @@ function App() {
         </motion.section>
       </section>
 
-      <section id="cta">
+      <Breaker/>
+
+      <motion.section id="cta"
+
+      >
         <div>
           <h2>All of this and more! when you play SimplyFellas</h2>
           <Link to={"/downloads"} className="linkButtons">
             Download today!
-          </Link>
+        </Link>
         </div>
+        <motion.img
+          initial={{ y: "-64px", opacity: 0}}
+          whileInView={{ y: "0%" , opacity: 1}}
+          viewport={{once: false}}
+          transition={{ease: "anticipate", duration: 3}}
+          src="./assets/extra_1.webp" />
+      </motion.section>
+
+      <Breaker/>
+
+      <section id="discordSection">
+
+        <h3>Questions? join our Discord or visit our <MakeLink url={urls.urls.simplyFellasWiki} text={"wiki"}></MakeLink></h3>
 
         <iframe
           id="discordEmbed"
@@ -222,7 +260,7 @@ function App() {
       </section>
 
       <Foot />
-    </>
+    </PageFx>
   );
 }
 

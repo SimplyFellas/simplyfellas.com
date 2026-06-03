@@ -2,14 +2,11 @@ import { useEffect } from "react";
 import "./App.css";
 import NavHeader from "./components/navHeader.jsx";
 import { Foot } from "./App.jsx";
+import PageFx from "./pageFx/pageFx.jsx";
 
 export default function Downloads() {
-  useEffect(() => {
-    window.scrollTo({top:0, left: 0, behavior:"smooth"})
-  },[])
-
   return (
-    <>
+    <PageFx>
       <NavHeader></NavHeader>
 
       <main id="wrapper_downloads">
@@ -17,6 +14,6 @@ export default function Downloads() {
       </main>
 
       <Foot></Foot>
-    </>
+    </PageFx>
   );
 }
