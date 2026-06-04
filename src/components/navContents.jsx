@@ -21,21 +21,21 @@ export function NavContents() {
         </motion.li>
 
         <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
-          <a href={urls.urls.simplyFellasWiki} target="blank">
+          <a href={urls.urls.simplyFellasWiki} target="blank" aria-label="wiki link">
             {question_svg}
             <span className="link-size-1">Wiki</span>
           </a>
         </motion.li>
 
         <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
-          <a href={urls.urls.discord} target="_blank">
+          <a href={urls.urls.discord} target="_blank" aria-label="discord link">
             {discord_svg}
             <span className="link-size-1">Discord</span>
           </a>
         </motion.li>
 
         <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
-          <a href={urls.urls.simplyFellasGithub} target="_blank">
+          <a href={urls.urls.simplyFellasGithub} target="_blank" aria-label="github link">
             {github_svg}
             <span className="link-size-1">Github</span>
           </a>

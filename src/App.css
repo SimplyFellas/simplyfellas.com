@@ -79,6 +79,8 @@ footer {
 .pageBreaker{
     width: 100%;
     height: 160px;
+
+    /*background-image: linear-gradient(to bottom ,transparent, red, transparent );*/
 }
 
 .noButtonStyle {
@@ -276,25 +278,30 @@ footer {
         right: 16px;
         top: 64px;
         margin-block: auto;
-        width: 90vw;
+        width: calc(100% - 32px);
         max-width: 360px;
         height: fit-content;
 
-        background: var(--pri-color-1);
+        background: var(--pri-color-2);
         border-radius: 1rem;
 
+
+
         & ul {
-            padding: 32px;
+            padding: 8px;
             margin: 0;
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
             gap: 8px;
-
             list-style: none;
-
             font-family: var(--font-poppins);
+
+
+
             & li {
-                padding-block: 8px;
+                background-color: var(--pri-color-1);
+                border-radius: calc(1rem - 8px);
 
                 &:hover {
                     background-color: var(--accent-color-1);
@@ -307,6 +314,8 @@ footer {
                     align-items: center;
                     justify-content: center;
                     gap: 8px;
+
+                    padding: 32px;
 
                     & span {
                         font-size: 0.75rem;
@@ -324,6 +333,24 @@ footer {
                 }
             }
         }
+
+        @media screen and (min-width: 540px){
+
+            width: fit-content;
+            max-width: 720px;
+
+            & ul{
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+
+                & li a{
+
+                    padding: 64px;
+                }
+            }
+
+        }
+
     }
 }
 
@@ -451,7 +478,7 @@ footer {
         height: fit-content;
         min-height: 100vh;
 
-        padding: 32px;
+        padding: 16px;
 
         background-color: var(--pri-color-1);
         background-size: 100%;
@@ -469,11 +496,13 @@ footer {
             font-family: var(--font-poppins);
             font-size: 1.5rem;
 
-            filter: drop-shadow(-4px 4px 0.1rem var(--pri-color-1));
+            filter: drop-shadow(0px 2px 0.1rem var(--pri-color-1));
         }
 
         @media screen and (min-width: 768px) {
             font-size: 5rem;
+
+            padding: 32px;
 
             height: 1080px;
         }
@@ -507,12 +536,10 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-
     padding: 16px;
-
     background-color: var(--pri-color-1);
-
     height: 100vh;
     min-height: fit-content;
 
@@ -567,11 +594,20 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 32px;
-
+    justify-content: center;
     align-items: center;
 
+    height: fit-content;
+    min-height: 100vh;
+
     & h3{
+        color: var(--sec-color-1);
         font-size: 3rem;
+        text-align: center;
+    }
+
+    @media screen and (min-width: 768px) {
+        height: 1080px;
     }
 
 
