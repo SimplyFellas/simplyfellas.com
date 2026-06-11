@@ -12,13 +12,7 @@ export function NavContents() {
         variants={containerAnimation}
         initial="hide"
         animate="show"
-      >
-        <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
-          <Link to={"/downloads"}>
-            {download_svg}
-            <span className="link-size-1">Download</span>
-          </Link>
-        </motion.li>
+    >
 
         <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
           <a href={urls.urls.simplyFellasWiki} target="blank" aria-label="wiki link">
@@ -39,7 +33,15 @@ export function NavContents() {
             {github_svg}
             <span className="link-size-1">Github</span>
           </a>
-        </motion.li>
+      </motion.li>
+
+      <motion.li variants={itemAnimation} whileTap={{scale:.9}}>
+        <Link to={"/downloads"}>
+          {download_svg}
+          <span className="link-size-1">Download</span>
+        </Link>
+      </motion.li>
+
       </motion.ul>
   )
 
