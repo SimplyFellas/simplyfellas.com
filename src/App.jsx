@@ -67,7 +67,7 @@ export function Foot() {
             all credit belongs to the creators.
           </i>
 
-          <i>Design & Developed by Netra Hun</i>
+          <span>Design & Developed by Netra Hun</span>
         </section>
       </footer>
     </div>
