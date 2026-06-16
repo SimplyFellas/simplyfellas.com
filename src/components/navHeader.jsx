@@ -39,8 +39,6 @@ function Hambor({navState}) {
 export default function NavHeader() {
   let [navOpened, setNavOpened] = useState(false);
 
-
-
   return (
     <motion.div
       id="stickyNavWrapper"

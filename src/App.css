@@ -67,13 +67,6 @@ body {
     margin: 0;
 }
 
-footer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 /* --- CLASS --- */
 
 .pageBreaker{
@@ -187,6 +180,10 @@ footer {
 
                     list-style: none;
                     padding: 0;
+
+                    & li span{
+                        font-size: .75rem;
+                    }
                 }
 
                 & ul li:nth-last-of-type(1){
@@ -270,7 +267,7 @@ footer {
 
     & #nav-title {
         font-family: var(--font-poppins);
-        font-size: 1rem;
+        font-size: .75rem;
         & a{
             transition: color .25s ease-in-out;
         }
@@ -405,28 +402,22 @@ footer {
 }
 
 #heroWrapper {
-    min-height: 95vh;
-
-    background: url("/assets/sfbg.png") top left;
+    background: url("/assets/sfbg.png");
     background-size: cover;
     background-repeat: repeat-x;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     animation: bgPos 60s infinite linear;
-
     font-size: 2rem;
 
     & #hero {
         display: flex;
         flex-direction: column;
         align-items: center;
-
         gap: 32px;
-
         padding-inline: 32px;
+        padding-block: 128px;
 
         & #versionDetail{
             width: 100%;
@@ -469,6 +460,8 @@ footer {
             flex-direction: column;
             justify-content: center;
             font-size: 3rem;
+            padding-block: 64px;
+
 
             /*& #heroTitle {
                 font-size: 10rem;
@@ -493,7 +486,8 @@ footer {
     }
 
     @media screen and (min-width: 768px){
-        background-size: 105%;
+        background-size: cover;
+
     }
 
 }
@@ -531,21 +525,14 @@ footer {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
         height: fit-content;
-        min-height: 100vh;
-
+        min-height: 540px;
         padding: 16px;
-
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        background-attachment: fixed;
-
-        animation: bgPos 60s infinite linear;
-
+        background-attachment: scroll;
         border-radius: 16px;
-
         color: var(--sec-color-1);
 
         & h3, & .hrefLink{
@@ -564,7 +551,7 @@ footer {
 
         @media screen and (min-width: 540px) {
             padding: 16px;
-            height: 1080px;
+            min-height: 768px;
             border-radius: 16px;
 
             & h3, & .hrefLink{
@@ -577,7 +564,6 @@ footer {
             padding: 32px;
             height: 1080px;
             border-radius: 32px;
-            background-size: 101%;
 
             & h3, & .hrefLink{
                 font-size: 3rem;
@@ -763,16 +749,20 @@ footer {
     }
 
     & footer{
-        padding-block: 32px;
-
+        padding: 16px;
         gap: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: calc(100%-32px);
     }
 
     & .flex{
         display: flex;
         flex-direction: column;
         gap: 32px;
-        justify-content: space-around;
+        justify-content: space-between;
         width: 100%;
         align-items: center;
     }
@@ -788,16 +778,12 @@ footer {
 
     & #footerLinks {
         color: var(--pri-color-1);
-
         display: flex;
         flex-direction: column;
-
         align-items: center;
         gap: 16px;
-
         justify-content: space-evenly;
         width: fit-content;
-
         position: relative;
 
         & div {
@@ -846,7 +832,7 @@ footer {
         width: 100%;
 
         & i {
-            font-size: 1rem;
+            font-size: .65rem;
             font-family: var(--font-poppins);
             font-weight: normal;
             color: var(--pri-color-1-color-1);
@@ -872,7 +858,10 @@ footer {
         }
 
         & #legal_disclaimer{
-            max-width: 620px;
+            max-width: 360px;
+            & i {
+                font-size: .65rem;
+            }
         }
     }
 
@@ -891,6 +880,11 @@ footer {
         & footer {
             max-width: 768px;
             margin-inline: auto;
+            flex-direction: column;
+
+            & .flex{
+                flex-direction: row;
+            }
         }
 
         & #footerLinks {
@@ -907,9 +901,11 @@ footer {
 
         }
 
-        & #legal_disclaimer {
-
-
+        & #legal_disclaimer{
+            max-width: 540px;
+            & i {
+                font-size: .65rem;
+            }
         }
     }
 }
@@ -942,7 +938,7 @@ footer {
     }
 
     & .pageBreaker{
-        height: 200px;
+        /*height: 200px;*/
     }
 
     & .link {
@@ -987,7 +983,7 @@ footer {
 
 @media screen and (min-width: 960px) {
     & .pageBreaker{
-        height: 240px;
+        /*height: 240px;*/
     }
 
 }

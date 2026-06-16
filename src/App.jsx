@@ -1,9 +1,9 @@
-import { motion, spring, stagger } from "motion/react";
+import { motion, scroll, spring, stagger } from "motion/react";
 import NavHeader from "./components/navHeader";
 import { Link } from "react-router-dom";
 import "./App.css";
 import urls from "./variables/url_links.json";
-import { arrow_svg, logo_svg } from "./components/graphics";
+import { arrow_svg, download_svg, logo_svg } from "./components/graphics";
 import {
   containerAnimation,
   delayedItemAnimation,
@@ -11,6 +11,9 @@ import {
   sectionsAnimation,
 } from "./variables/motionVariables";
 import PageFx from "./pageFx/pageFx";
+import { feFuncB } from "motion/react-m";
+import { useEffect, useState } from "react";
+import { useRef } from "react";
 
 function MakeLink({ url, text }) {
   return (
@@ -59,14 +62,12 @@ export function Foot() {
         <section id="legal_disclaimer">
           <i>
             SimplyFellas is not associated with Mojang or Microsoft and is not
-            related to the featured mods and it's creators. Textures and assets
-            pulled from the mods were used to create the renders. Purely for artistic
-            intent. No AI was used.
+            affiliated with any of the featured mods or it's creators. Textures
+            and assets pulled from the mods were used to create the renders. So
+            all credit belongs to the creators.
           </i>
-        </section>
 
-        <section>
-          <span>Design & Developed by Netra Hun</span>
+          <i>Design & Developed by Netra Hun</i>
         </section>
       </footer>
     </div>
@@ -77,8 +78,69 @@ function Breaker() {
   return <div className="pageBreaker"></div>;
 }
 
+function MotionAboutSection({ children }) {
+  return (
+    <motion.section
+      variants={sectionsAnimation}
+      initial="hide"
+      whileInView="show"
+      viewport={{ once: false, amount: "some" }}
+    >
+      {children}
+    </motion.section>
+  );
+}
+
+function ModpackInfo() {
+
+  let modpackVersions = useRef(null);
+  let [latestVersion, setVersion] = useState("")
+
+  useEffect(() => {
+    fetchVersions().then((result) => {
+      modpackVersions.current = result;
+      setVersion(modpackVersions.current.versions[modpackVersions.current.versions.length - 1]);
+    });
+  }, []);
+
+  return (
+    <motion.div
+      id="versionDetail"
+      variants={containerAnimation}
+      initial="hide"
+      animate="show"
+      viewport={{ once: false, amount: 0.1 }}
+    >
+      <motion.span variants={itemAnimation}>
+        Minecraft 1.21.1
+      </motion.span>
+      <motion.span variants={itemAnimation}>
+        Modpack Version: {latestVersion.id}
+      </motion.span>
+    </motion.div>
+  )
+}
+
+async function fetchVersions() {
+  const jsonLink =
+    "https://raw.githubusercontent.com/SimplyFellas/SimplyFellasVersions/3d0cef8635920faffa89e1059c88ad8a8402ca24/Versions/meta.json";
+  try {
+    const response = await fetch(jsonLink, { method: "GET" });
+    if (!response.ok) {
+      throw new Error(`Response Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 // only use whileinView below the fold
 function App() {
+  scroll(scrolling => { console.log(scrolling)})
+
   return (
     <PageFx>
       <NavHeader />
@@ -101,20 +163,7 @@ function App() {
             A vanilla+ Modpack for friends by friends.
           </motion.p>
 
-          <motion.div
-            id="versionDetail"
-            variants={containerAnimation}
-            initial="hide"
-            animate="show"
-            viewport={{ once: false, amount: 0.1 }}
-          >
-            <motion.span variants={delayedItemAnimation}>
-              Minecraft 1.21.1
-            </motion.span>
-            <motion.span variants={delayedItemAnimation}>
-              Modpack Ver: 1.6.0
-            </motion.span>
-          </motion.div>
+          <ModpackInfo/>
 
           <motion.div
             className="justify-row"
@@ -126,7 +175,7 @@ function App() {
           >
             <motion.span variants={delayedItemAnimation}>
               <Link to={"/downloads"} className="linkButtons">
-                {arrow_svg}
+                {download_svg}
                 <span className="sec-c-1 mb-auto">Download!</span>
               </Link>
             </motion.span>
@@ -155,36 +204,26 @@ function App() {
         animate="show"
         viewport={{ once: false, amount: 0.1 }}
       >
-        <h2>
+        <motion.h2 variants={delayedItemAnimation}>
           With <strong>150+</strong> mods, you'll always experience something
           new!
-        </h2>
+        </motion.h2>
       </motion.section>
 
       {/* mod sections */}
       <section id="about">
-        <motion.section
-          variants={sectionsAnimation}
-          initial="hide"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.1 }}
-        >
+        <MotionAboutSection>
           <h3>
             Automate your world with{" "}
             <a className="hrefLink" target="_blank" href={urls.urls.createMod}>
               Create!
             </a>
           </h3>
-        </motion.section>
+        </MotionAboutSection>
 
         <Breaker />
 
-        <motion.section
-          variants={sectionsAnimation}
-          initial="hide"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.1 }}
-        >
+        <MotionAboutSection>
           <h3>
             Find hidden treastures with{" "}
             <a
@@ -195,16 +234,11 @@ function App() {
               Moog's Structures!
             </a>
           </h3>
-        </motion.section>
+        </MotionAboutSection>
 
         <Breaker />
 
-        <motion.section
-          variants={sectionsAnimation}
-          initial="hide"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.1 }}
-        >
+        <MotionAboutSection>
           <h3>
             Adopt your very own tiny{" "}
             <a
@@ -215,16 +249,11 @@ function App() {
               Adorable Hamsters!
             </a>
           </h3>
-        </motion.section>
+        </MotionAboutSection>
 
         <Breaker />
 
-        <motion.section
-          variants={sectionsAnimation}
-          initial="hide"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.1 }}
-        >
+        <MotionAboutSection>
           <h3>
             Too many chests? try{" "}
             <a
@@ -235,26 +264,19 @@ function App() {
               Sophisticated Storage!
             </a>
           </h3>
-        </motion.section>
+        </MotionAboutSection>
 
         <Breaker />
 
-        <motion.section
-          variants={sectionsAnimation}
-          initial="hide"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.1 }}
-        >
+        <MotionAboutSection>
           <h3>
             Do a little trolling with{" "}
             <a className="hrefLink" target="_blank" href={urls.urls.carryOnMod}>
               Carry On!
             </a>
           </h3>
-        </motion.section>
+        </MotionAboutSection>
       </section>
-
-      <Breaker />
 
       <motion.section id="cta">
         <div>
@@ -271,8 +293,6 @@ function App() {
           src="./assets/extra_1.webp"
         />
       </motion.section>
-
-      <Breaker />
 
       <section id="discordSection">
         <h3>
