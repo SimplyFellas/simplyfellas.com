@@ -139,7 +139,7 @@ async function fetchVersions() {
 
 // only use whileinView below the fold
 function App() {
-  scroll(scrolling => { console.log(scrolling)})
+  // scroll(scrolling => { console.log(scrolling)})
 
   return (
     <PageFx>

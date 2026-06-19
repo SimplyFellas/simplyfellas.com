@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, stagger } from "motion/react";
+import { AnimatePresence, motion, stagger, useReducedMotion } from "motion/react";
 import {
   containerAnimation,
   itemAnimation,
@@ -13,6 +13,7 @@ import {
 import { NavContents } from "./navContents";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 function Hambor({navState}) {
   window.addEventListener("resize", () => {
@@ -37,7 +38,18 @@ function Hambor({navState}) {
 }
 
 export default function NavHeader() {
-  let [navOpened, setNavOpened] = useState(false);
+  let [navOpened, setNavOpened] = useState(false)
+  let prevScrollPos = useRef(window.pageYOffset)
+
+  window.onscroll = ()=>{
+    let currentScroll = window.pageYOffset
+    if (prevScrollPos.current > currentScroll) {
+      document.getElementById("stickyNavWrapper").style.top = "16px"
+    } else {
+      document.getElementById("stickyNavWrapper").style.top = "-64px"
+    }
+    prevScrollPos.current = currentScroll
+  }
 
   return (
     <motion.div
