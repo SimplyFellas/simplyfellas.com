@@ -35,4 +35,4 @@ jobs:
             git pull
             npm install
             npm run build
-            pm2 restart {simplyfellas} # Replace with your PM2 service name
+            pm2 restart simplyfellas # Replace with your PM2 service name
