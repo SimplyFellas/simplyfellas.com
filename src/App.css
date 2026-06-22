@@ -528,8 +528,8 @@ body {
     & section {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        justify-content: end;
+        align-items: start;
         height: fit-content;
         min-height: 540px;
         padding: 16px;
@@ -539,6 +539,17 @@ body {
         background-attachment: scroll;
         border-radius: 16px;
         color: var(--sec-color-1);
+
+        animation: bgPos 30s infinite linear;
+
+        counter-increment: listOfSections 1;
+
+        & h3::before{
+            content: counter(listOfSections, decimal) ". ";
+            display: block;
+            font-family: var(--font-jersey);
+            letter-spacing: 4px;
+        }
 
         & h3, & .hrefLink{
             filter: drop-shadow(0px 2px 0.25rem rgba(8,8,8,50%));
@@ -578,6 +589,7 @@ body {
     }
 
     & section:nth-last-of-type(even) {
+        align-items: end;
 
         & h3 {
             text-align: end;
@@ -613,7 +625,7 @@ body {
     min-height: fit-content;
     position: relative;
 
-    &::before{
+    /*&::before{
         background-color: var(--pri-color-1);
         background-image: none;
         content: "";
@@ -621,14 +633,14 @@ body {
         width: 100%;
         height: 60px;
 
-        top: -60px;
+        top: -30px;
         border-radius: 50% 50% 0 0;
 
         @media screen and (min-width:960px){
             height: 120px;
-            top: -120px;
+            top: -60px;
         }
-    }
+    }*/
 
     &::after{
         background-color: var(--pri-color-1);
@@ -831,7 +843,7 @@ body {
         margin-block: 0.25rem;
     }
 
-    & #legal_disclaimer {
+    & #disclaimer {
         max-width: 360px;
         text-align: start;
         width: 100%;
@@ -862,7 +874,7 @@ body {
             }
         }
 
-        & #legal_disclaimer{
+        & #disclaimer{
             max-width: 360px;
             & i {
                 font-size: .65rem;
@@ -906,7 +918,7 @@ body {
 
         }
 
-        & #legal_disclaimer{
+        & #disclaimer{
             max-width: 540px;
             & i {
                 font-size: .65rem;

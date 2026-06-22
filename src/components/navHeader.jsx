@@ -41,7 +41,11 @@ export default function NavHeader() {
   let [navOpened, setNavOpened] = useState(false)
   let prevScrollPos = useRef(window.pageYOffset)
 
-  window.onscroll = ()=>{
+  window.onscroll = () => {
+    if (navOpened) {
+      setNavOpened(false)
+    }
+
     let currentScroll = window.pageYOffset
     if (prevScrollPos.current > currentScroll) {
       document.getElementById("stickyNavWrapper").style.top = "16px"

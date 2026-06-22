@@ -59,7 +59,7 @@ export function Foot() {
           </section>
         </div>
 
-        <section id="legal_disclaimer">
+        <section id="disclaimer">
           <i>
             SimplyFellas is not associated with Mojang or Microsoft and is not
             affiliated with any of the featured mods or it's creators. Textures
@@ -92,14 +92,17 @@ function MotionAboutSection({ children }) {
 }
 
 function ModpackInfo() {
-
   let modpackVersions = useRef(null);
-  let [latestVersion, setVersion] = useState("")
+  let [latestVersion, setVersion] = useState("");
 
   useEffect(() => {
     fetchVersions().then((result) => {
       modpackVersions.current = result;
-      setVersion(modpackVersions.current.versions[modpackVersions.current.versions.length - 1]);
+      setVersion(
+        modpackVersions.current.versions[
+          modpackVersions.current.versions.length - 1
+        ],
+      );
     });
   }, []);
 
@@ -111,14 +114,12 @@ function ModpackInfo() {
       animate="show"
       viewport={{ once: false, amount: 0.1 }}
     >
-      <motion.span variants={itemAnimation}>
-        Minecraft 1.21.1
-      </motion.span>
+      <motion.span variants={itemAnimation}>Minecraft 1.21.1</motion.span>
       <motion.span variants={itemAnimation}>
         Modpack Version: {latestVersion.id}
       </motion.span>
     </motion.div>
-  )
+  );
 }
 
 async function fetchVersions() {
@@ -142,177 +143,186 @@ function App() {
   // scroll(scrolling => { console.log(scrolling)})
 
   return (
-    <PageFx>
+    <>
       <NavHeader />
 
-      <motion.main id="heroWrapper">
-        {/* hero section*/}
-        <motion.section
-          id="hero"
-          variants={containerAnimation}
-          initial="hide"
-          animate="show"
-          viewport={{ once: false, amount: 0.1 }}
-        >
-          <motion.img
-            id="heroTitle"
-            src="./assets/SimplyFellasTitle.svg"
-            variants={itemAnimation}
-          ></motion.img>
-          <motion.p id="heroDesc" variants={delayedItemAnimation}>
-            A vanilla+ Modpack for friends by friends.
-          </motion.p>
-
-          <ModpackInfo/>
-
-          <motion.div
-            className="justify-row"
-            id="heroLinkWrapper"
+      <PageFx>
+        <motion.main id="heroWrapper">
+          {/* hero section*/}
+          <motion.section
+            id="hero"
             variants={containerAnimation}
             initial="hide"
             animate="show"
             viewport={{ once: false, amount: 0.1 }}
           >
-            <motion.span variants={delayedItemAnimation}>
-              <Link to={"/downloads"} className="linkButtons">
-                {download_svg}
-                <span className="sec-c-1 mb-auto">Download!</span>
-              </Link>
-            </motion.span>
+            <motion.img
+              id="heroTitle"
+              src="./assets/SimplyFellasTitle.svg"
+              variants={itemAnimation}
+            ></motion.img>
+            <motion.p id="heroDesc" variants={delayedItemAnimation}>
+              A vanilla+ Modpack for friends by friends.
+            </motion.p>
 
-            <motion.a
-              href="https://wabbanode.com/affiliate/simplyfellas"
-              target="_blank"
-              className="linkButtons"
-              id="wabbanode"
-              variants={delayedItemAnimation}
+            <ModpackInfo />
+
+            <motion.div
+              className="justify-row"
+              id="heroLinkWrapper"
+              variants={containerAnimation}
+              initial="hide"
+              animate="show"
+              viewport={{ once: false, amount: 0.1 }}
             >
-              {arrow_svg}
-              <motion.span className="sec-c-1 mb-auto">
-                Need a Server?
+              <motion.span variants={delayedItemAnimation}>
+                <Link to={"/downloads"} className="linkButtons">
+                  {download_svg}
+                  <span className="sec-c-1 mb-auto">Download!</span>
+                </Link>
               </motion.span>
-            </motion.a>
-          </motion.div>
+
+              <motion.a
+                href="https://wabbanode.com/affiliate/simplyfellas"
+                target="_blank"
+                className="linkButtons"
+                id="wabbanode"
+                variants={delayedItemAnimation}
+              >
+                {arrow_svg}
+                <motion.span className="sec-c-1 mb-auto">
+                  Need a Server?
+                </motion.span>
+              </motion.a>
+            </motion.div>
+          </motion.section>
+        </motion.main>
+
+        {/* breaker */}
+        <motion.section
+          id="modShowcase"
+          variants={containerAnimation}
+          initial="hide"
+          animate="show"
+          viewport={{ once: false, amount: 0.1 }}
+        >
+          <motion.h2 variants={delayedItemAnimation}>
+            With <strong>150+</strong> mods, you'll always experience something
+            new!
+          </motion.h2>
         </motion.section>
-      </motion.main>
+        {/* mod sections */}
+        <section id="about">
+          <MotionAboutSection>
+            <h3>
+              Automate your world with{" "}
+              <a
+                className="hrefLink"
+                target="_blank"
+                href={urls.urls.createMod}
+              >
+                Create!
+              </a>
+            </h3>
+          </MotionAboutSection>
 
-      {/* breaker */}
-      <motion.section
-        id="modShowcase"
-        variants={containerAnimation}
-        initial="hide"
-        animate="show"
-        viewport={{ once: false, amount: 0.1 }}
-      >
-        <motion.h2 variants={delayedItemAnimation}>
-          With <strong>150+</strong> mods, you'll always experience something
-          new!
-        </motion.h2>
-      </motion.section>
+          <Breaker />
 
-      {/* mod sections */}
-      <section id="about">
-        <MotionAboutSection>
+          <MotionAboutSection>
+            <h3>
+              Find hidden treastures with{" "}
+              <a
+                className="hrefLink"
+                target="_blank"
+                href={urls.urls.moogStructuresMod}
+              >
+                Moog's Structures!
+              </a>
+            </h3>
+          </MotionAboutSection>
+
+          <Breaker />
+
+          <MotionAboutSection>
+            <h3>
+              Adopt your very own tiny{" "}
+              <a
+                className="hrefLink"
+                target="_blank"
+                href={urls.urls.adorableHamstersMod}
+              >
+                Adorable Hamsters!
+              </a>
+            </h3>
+          </MotionAboutSection>
+
+          <Breaker />
+
+          <MotionAboutSection>
+            <h3>
+              Too many chests? try{" "}
+              <a
+                className="hrefLink"
+                target="_blank"
+                href={urls.urls.sophisticatedStorageMod}
+              >
+                Sophisticated Storage!
+              </a>
+            </h3>
+          </MotionAboutSection>
+
+          <Breaker />
+
+          <MotionAboutSection>
+            <h3>
+              Do a little trolling with{" "}
+              <a
+                className="hrefLink"
+                target="_blank"
+                href={urls.urls.carryOnMod}
+              >
+                Carry On!
+              </a>
+            </h3>
+          </MotionAboutSection>
+        </section>
+
+        <motion.section id="cta">
+          <div>
+            <h2>All of this and more!</h2>
+            <Link to={"/downloads"} className="linkButtons">
+              Download SimplyFellas!
+            </Link>
+          </div>
+          <motion.img
+            initial={{ y: "-64px", opacity: 0 }}
+            whileInView={{ y: "0%", opacity: 1 }}
+            viewport={{ once: false }}
+            transition={{ ease: "anticipate", duration: 3 }}
+            src="./assets/extra_1.webp"
+          />
+        </motion.section>
+
+        <section id="discordSection">
           <h3>
-            Automate your world with{" "}
-            <a className="hrefLink" target="_blank" href={urls.urls.createMod}>
-              Create!
-            </a>
+            Questions? join our Discord or visit our{" "}
+            <MakeLink url={urls.urls.simplyFellasWiki} text={"wiki"}></MakeLink>
           </h3>
-        </MotionAboutSection>
 
-        <Breaker />
+          <iframe
+            id="discordEmbed"
+            src="https://discord.com/widget?id=1452128644221767733&theme=dark"
+            width="350"
+            height="500"
+            allowtransparency="true"
+            frameborder="0"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+          ></iframe>
+        </section>
 
-        <MotionAboutSection>
-          <h3>
-            Find hidden treastures with{" "}
-            <a
-              className="hrefLink"
-              target="_blank"
-              href={urls.urls.moogStructuresMod}
-            >
-              Moog's Structures!
-            </a>
-          </h3>
-        </MotionAboutSection>
-
-        <Breaker />
-
-        <MotionAboutSection>
-          <h3>
-            Adopt your very own tiny{" "}
-            <a
-              className="hrefLink"
-              target="_blank"
-              href={urls.urls.adorableHamstersMod}
-            >
-              Adorable Hamsters!
-            </a>
-          </h3>
-        </MotionAboutSection>
-
-        <Breaker />
-
-        <MotionAboutSection>
-          <h3>
-            Too many chests? try{" "}
-            <a
-              className="hrefLink"
-              target="_blank"
-              href={urls.urls.sophisticatedStorageMod}
-            >
-              Sophisticated Storage!
-            </a>
-          </h3>
-        </MotionAboutSection>
-
-        <Breaker />
-
-        <MotionAboutSection>
-          <h3>
-            Do a little trolling with{" "}
-            <a className="hrefLink" target="_blank" href={urls.urls.carryOnMod}>
-              Carry On!
-            </a>
-          </h3>
-        </MotionAboutSection>
-      </section>
-
-      <motion.section id="cta">
-        <div>
-          <h2>All of this and more!</h2>
-          <Link to={"/downloads"} className="linkButtons">
-            Download SimplyFellas!
-          </Link>
-        </div>
-        <motion.img
-          initial={{ y: "-64px", opacity: 0 }}
-          whileInView={{ y: "0%", opacity: 1 }}
-          viewport={{ once: false }}
-          transition={{ ease: "anticipate", duration: 3 }}
-          src="./assets/extra_1.webp"
-        />
-      </motion.section>
-
-      <section id="discordSection">
-        <h3>
-          Questions? join our Discord or visit our{" "}
-          <MakeLink url={urls.urls.simplyFellasWiki} text={"wiki"}></MakeLink>
-        </h3>
-
-        <iframe
-          id="discordEmbed"
-          src="https://discord.com/widget?id=1452128644221767733&theme=dark"
-          width="350"
-          height="500"
-          allowtransparency="true"
-          frameborder="0"
-          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-        ></iframe>
-      </section>
-
-      <Foot />
-    </PageFx>
+        <Foot />
+      </PageFx>
+    </>
   );
 }
 
