@@ -2,12 +2,15 @@
   "urls":
   {
   "discord": "https://discord.gg/kycqpz8z4q",
+  "curseforgelink": "https://www.curseforge.com/minecraft/modpacks/simplyfellas",
   "simplyFellasGithub": "https://github.com/SimplyFellas",
   "simplyFellasWiki":"https://github.com/SimplyFellas/SimplyFellasWiki/wiki/Wiki-Homepage",
   "createMod":"https://www.curseforge.com/minecraft/mc-mods/create",
+  "simplyfellasVersions": "https://github.com/SimplyFellas/SimplyFellasVersions/tree/master/Versions/versions",
   "moogStructuresMod":"https://www.curseforge.com/minecraft/mc-mods/moogs-structure-lib",
   "adorableHamstersMod":"https://www.curseforge.com/minecraft/mc-mods/adorable-hamster-pets",
   "sophisticatedStorageMod":"https://www.curseforge.com/minecraft/mc-mods/sophisticated-storage",
-  "carryOnMod":"https://www.curseforge.com/minecraft/mc-mods/carry-on"
+  "carryOnMod":"https://www.curseforge.com/minecraft/mc-mods/carry-on",
+  "wabbanode": "https://wabbanode.com/affiliate/simplyfellas"
   }
 }

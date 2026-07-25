@@ -22,7 +22,7 @@ export default function PageFx({ children }) {
       content: "#websiteContent",
       smooth: 2,
       effects: true,
-      normalizeScroll: true,
+      normalizeScroll: false,
     });
   });
 

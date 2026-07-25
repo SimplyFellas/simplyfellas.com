@@ -1,19 +1,23 @@
-import { motion, scroll, spring, stagger } from "motion/react";
+import { motion, motionValue, scroll, spring, stagger } from "motion/react";
 import NavHeader from "./components/navHeader";
 import { Link } from "react-router-dom";
 import "./App.css";
 import urls from "./variables/url_links.json";
-import { arrow_svg, download_svg, logo_svg } from "./components/graphics";
+import { arrow_svg, discord_svg, download_svg, logo_svg } from "./components/graphics";
 import {
   containerAnimation,
   delayedItemAnimation,
   itemAnimation,
   sectionsAnimation,
+  viewportConfig,
 } from "./variables/motionVariables";
 import PageFx from "./pageFx/pageFx";
-import { feFuncB } from "motion/react-m";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import { randomInt } from "mathjs";
+import { gsap } from "gsap"
+import { SplitText } from "gsap/SplitText";
+import { fetchVersions } from "./components/fetchMcVersions";
 
 function MakeLink({ url, text }) {
   return (
@@ -24,67 +28,150 @@ function MakeLink({ url, text }) {
 }
 
 export function Foot() {
+  let caution = useRef(null)
+
   return (
-    <div id="footerWrapper">
-      <footer>
+    <motion.section
+      id="footerWrapper"
+      variants={containerAnimation}
+      initial="hide"
+      whileInView="show"
+      viewport={viewportConfig}
+    >
+      <div className="breaker_container">
+        <img src="./assets/breaker_2.webp" className="pbreak2"></img>
+      </div>
+      <motion.footer
+        whileInView={{opacity: 1}}
+      >
         <div className="flex">
-          <button
+          <motion.button
+            variants={itemAnimation}
+            initial={{scale: 1}}
+            whileFocus={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1.1 }}
+            id="gobackup"
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="noButtonStyle"
           >
             {logo_svg}
-          </button>
+          </motion.button>
 
-          <section id="footerLinks">
-            <div>
+          <motion.section
+            id="footerLinks"
+            variants={containerAnimation}
+          >
+            <motion.div variants={containerAnimation}>
               <span className="footerLinkHeader">Play</span>
               <Link to={"/downloads"} className="link">
                 Downloads
               </Link>
-            </div>
-            <div>
+            </motion.div>
+
+            <motion.div variants={containerAnimation}>
               <span className="footerLinkHeader">Resources</span>
               <MakeLink url={urls.urls.simplyFellasWiki} text={"Wiki"} />
               <MakeLink
                 url={urls.urls.simplyFellasGithub}
                 text={"GitHub Repo"}
               />
-            </div>
-            <div>
+            </motion.div >
+            <motion.div variants={containerAnimation}>
               <span className="footerLinkHeader">Socials</span>
               <MakeLink url={urls.urls.discord} text={"Discord Server"} />
-            </div>
-          </section>
+            </motion.div>
+          </motion.section>
         </div>
 
-        <section id="disclaimer">
-          <i>
-            SimplyFellas is not associated with Mojang or Microsoft and is not
-            affiliated with any of the featured mods or it's creators. Textures
-            and assets pulled from the mods were used to create the renders. So
-            all credit belongs to the creators.
-          </i>
+        <motion.section
+          variants={containerAnimation}
+          initial="hide"
+          whileInView="show"
+          viewport={viewportConfig}
+          id="disclaimer"
+        >
+          <motion.img
+            initial={{ y: -32, opacity: 0}}
+            whileInView={{y: window.innerWidth<1080?"-90%": "-25%", opacity: 1}}
+            viewport={viewportConfig}
+            tran
+            src="/assets/sf_half1.webp"
+            id="left_half"
+            className="halfs"
+          >
+          </motion.img>
 
-          <span>Design & Developed by Netra Hun</span>
+          <motion.img
+            initial={{y:-32, opacity: 0}}
+            whileInView={{y: window.innerWidth<1080?"-90%": "-25%", opacity: 1}}
+            viewport={viewportConfig}
+            src="/assets/sf_half2.webp"
+            id="right_half"
+            className="halfs"
+          >
+          </motion.img>
+
+          <motion.div
+            initial={{ backgroundSize: "0px" }}
+            whileInView={{ backgroundSize: "auto 90%" }}
+            transition={{ duration: 1, type: "spring" }}
+            id="cautionTextContainer"
+            onAnimationStart={() => {
+              const split = new SplitText(caution.current, {type: "words, chars"})
+              gsap.from(split.words, { duration: 0.5, y: 8, autoAlpha: 0, stagger: 0.05 })
+            }}
+          >
+            <motion.i
+              ref={caution}
+            >
+              SimplyFellas is not associated with Mojang or Microsoft and is not
+              affiliated with any of the featured mods or it's creators.
+              Textures and assets pulled from the mods were used to create the
+              renders. So all credit belongs to the creators.
+            </motion.i>
+          </motion.div>
+        </motion.section>
+
+        <section id="credits">
+          <motion.p variants={itemAnimation}>
+            Website Designed & Developed by{" "}
+            <a href="https://netrahun.com" target="_blank" className="link">
+              Netra Hun
+            </a>
+          </motion.p>
+          <motion.p variants={itemAnimation}>
+            Modpack Assembled & Managed by{" "}
+            <a href="https://github.com/UncleTyrone.com" target="_blank" className="link">
+              UncleTyrone
+            </a>
+          </motion.p>
         </section>
-      </footer>
-    </div>
+
+        </motion.footer>
+
+      <div className="breaker_container">
+        <img src="./assets/breaker_1.webp" className="pbreak1"></img>
+      </div>
+    </motion.section>
   );
 }
 
-function Breaker() {
-  return <div className="pageBreaker"></div>;
+export function Breaker() {
+  return <div className="pageBreaker"><img src="./assets/breaker_5.webp"></img></div>;
 }
 
 function MotionAboutSection({ children }) {
   return (
     <motion.section
+      tabIndex={0}
       variants={sectionsAnimation}
       initial="hide"
       whileInView="show"
-      viewport={{ once: false, amount: "some" }}
+      exit="exit"
+      viewport={{ amount: 0.1 }}
     >
       {children}
     </motion.section>
@@ -122,26 +209,15 @@ function ModpackInfo() {
   );
 }
 
-async function fetchVersions() {
-  const jsonLink =
-    "https://raw.githubusercontent.com/SimplyFellas/SimplyFellasVersions/3d0cef8635920faffa89e1059c88ad8a8402ca24/Versions/meta.json";
-  try {
-    const response = await fetch(jsonLink, { method: "GET" });
-    if (!response.ok) {
-      throw new Error(`Response Status: ${response.status}`);
-    }
-
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error(error.message);
-  }
-}
-
 // only use whileinView below the fold
 function App() {
   // scroll(scrolling => { console.log(scrolling)})
-
+  const ctaPhrases = [
+    "Sick of 2 week minecraft?",
+    "Want to explode your friends using hamsters?",
+    "Ready to have a good time with friends?",
+    "Do you like capybaras and minecraft?",
+  ];
   return (
     <>
       <NavHeader />
@@ -165,35 +241,25 @@ function App() {
               A vanilla+ Modpack for friends by friends.
             </motion.p>
 
-            <ModpackInfo />
+            {/* <ModpackInfo />*/}
 
             <motion.div
-              className="justify-row"
+              className="justify-col gap32px"
               id="heroLinkWrapper"
               variants={containerAnimation}
               initial="hide"
               animate="show"
               viewport={{ once: false, amount: 0.1 }}
             >
-              <motion.span variants={delayedItemAnimation}>
+              <motion.span variants={itemAnimation}>
                 <Link to={"/downloads"} className="linkButtons">
                   {download_svg}
                   <span className="sec-c-1 mb-auto">Download!</span>
                 </Link>
               </motion.span>
 
-              <motion.a
-                href="https://wabbanode.com/affiliate/simplyfellas"
-                target="_blank"
-                className="linkButtons"
-                id="wabbanode"
-                variants={delayedItemAnimation}
-              >
-                {arrow_svg}
-                <motion.span className="sec-c-1 mb-auto">
-                  Need a Server?
-                </motion.span>
-              </motion.a>
+              <motion.a href={urls.urls.wabbanode} variants={itemAnimation}><img src="./assets/wabbanode.png" id="wabbanode" alt="Wabbanode server sponsor"></img></motion.a>
+
             </motion.div>
           </motion.section>
         </motion.main>
@@ -201,124 +267,173 @@ function App() {
         {/* breaker */}
         <motion.section
           id="modShowcase"
-          variants={containerAnimation}
-          initial="hide"
-          animate="show"
-          viewport={{ once: false, amount: 0.1 }}
+          // variants={containerAnimation}
+          // initial="hide"
+          // whileInView="show"
+          // viewport={viewportConfig}
         >
-          <motion.h2 variants={delayedItemAnimation}>
-            With <strong>150+</strong> mods, you'll always experience something
-            new!
+          <div className="breaker_container"><img src="./assets/breaker_3.webp" className="top"></img></div>
+          <motion.h2 variants={itemAnimation} initial="hide" whileInView="show" viewport={{amount: .1}}>
+            Discover over <motion.strong>150+</motion.strong> specially picked mods!
           </motion.h2>
+          <div className="breaker_container"><img src="./assets/breaker_4.webp" className="bottom"></img></div>
+
         </motion.section>
+
         {/* mod sections */}
         <section id="about">
           <MotionAboutSection>
-            <h3>
-              Automate your world with{" "}
-              <a
-                className="hrefLink"
-                target="_blank"
-                href={urls.urls.createMod}
-              >
-                Create!
-              </a>
-            </h3>
+            <h3>Automate your world with </h3>
+            <a
+              tabIndex={-1}
+              className="hrefLink"
+              target="_blank"
+              href={urls.urls.createMod}
+            >
+              Create!
+            </a>
+          </MotionAboutSection>
+
+          <Breaker/>
+
+          <MotionAboutSection>
+            <h3>Find hidden treasures with</h3>
+            <a
+              tabIndex={-1}
+              className="hrefLink"
+              target="_blank"
+              href={urls.urls.moogStructuresMod}
+            >
+              Moog's Structures!
+            </a>
           </MotionAboutSection>
 
           <Breaker />
 
           <MotionAboutSection>
-            <h3>
-              Find hidden treastures with{" "}
-              <a
-                className="hrefLink"
-                target="_blank"
-                href={urls.urls.moogStructuresMod}
-              >
-                Moog's Structures!
-              </a>
-            </h3>
+            <h3>Adopt your very own tiny</h3>
+            <a
+              tabIndex={-1}
+              className="hrefLink"
+              target="_blank"
+              href={urls.urls.adorableHamstersMod}
+            >
+              Adorable Hamsters!
+            </a>
           </MotionAboutSection>
 
           <Breaker />
 
           <MotionAboutSection>
-            <h3>
-              Adopt your very own tiny{" "}
-              <a
-                className="hrefLink"
-                target="_blank"
-                href={urls.urls.adorableHamstersMod}
-              >
-                Adorable Hamsters!
-              </a>
-            </h3>
+            <h3>Too many chests? try</h3>
+            <a
+              tabIndex={-1}
+              className="hrefLink"
+              target="_blank"
+              href={urls.urls.sophisticatedStorageMod}
+            >
+              Sophisticated Storage!
+            </a>
           </MotionAboutSection>
 
           <Breaker />
 
           <MotionAboutSection>
-            <h3>
-              Too many chests? try{" "}
-              <a
-                className="hrefLink"
-                target="_blank"
-                href={urls.urls.sophisticatedStorageMod}
-              >
-                Sophisticated Storage!
-              </a>
-            </h3>
-          </MotionAboutSection>
-
-          <Breaker />
-
-          <MotionAboutSection>
-            <h3>
-              Do a little trolling with{" "}
-              <a
-                className="hrefLink"
-                target="_blank"
-                href={urls.urls.carryOnMod}
-              >
-                Carry On!
-              </a>
-            </h3>
+            <h3>Do a little trolling with </h3>
+            <a
+              tabIndex={-1}
+              className="hrefLink"
+              target="_blank"
+              href={urls.urls.carryOnMod}
+            >
+              Carry On!
+            </a>
           </MotionAboutSection>
         </section>
 
-        <motion.section id="cta">
-          <div>
-            <h2>All of this and more!</h2>
-            <Link to={"/downloads"} className="linkButtons">
-              Download SimplyFellas!
-            </Link>
-          </div>
+        <Breaker />
+
+        <motion.section
+          id="cta"
+          variants={containerAnimation}
+          initial="hide"
+          whileInView="show"
+          viewport={viewportConfig}
+        >
           <motion.img
-            initial={{ y: "-64px", opacity: 0 }}
-            whileInView={{ y: "0%", opacity: 1 }}
-            viewport={{ once: false }}
-            transition={{ ease: "anticipate", duration: 3 }}
-            src="./assets/extra_1.webp"
+            variants={itemAnimation}
+            initial="hide"
+            whileInView="show"
+            viewport={viewportConfig}
+            src="./assets/sfbg.webp"
           />
+          <motion.aside
+            variants={containerAnimation}
+            initial="hide"
+            whileInView="show"
+            viewport={viewportConfig}
+          >
+            <motion.h2
+              variants={itemAnimation}
+              viewport={viewportConfig}
+            >
+              {ctaPhrases[randomInt(1, ctaPhrases.length)]}
+            </motion.h2>
+            <motion.span
+              variants={itemAnimation}
+              viewport={viewportConfig}>
+              <Link to={"/downloads"} className="linkButtons">
+                Download SimplyFellas!
+              </Link>
+            </motion.span>
+          </motion.aside>
         </motion.section>
 
-        <section id="discordSection">
-          <h3>
-            Questions? join our Discord or visit our{" "}
-            <MakeLink url={urls.urls.simplyFellasWiki} text={"wiki"}></MakeLink>
-          </h3>
+        <motion.section
+          id="discordSection"
+          variants={containerAnimation}
+          initial="hide"
+          whileInView="show"
+          viewport={viewportConfig}
+        >
+          <motion.aside variants={containerAnimation}>
+            <motion.h3 variants={itemAnimation}>
+              Come join our{" "}
+              <motion.a
+                className="link"
+                href={urls.urls.discord}
+                target="_blank"
+              >
+                Discord!
+              </motion.a>{" "}
+            </motion.h3>
+            <motion.p variants={itemAnimation}>
+              Hangout, chat with other modpack players, ask us questions, report
+              bugs, suggest updates, and more!
+            </motion.p>
+          </motion.aside>
 
-          <iframe
-            id="discordEmbed"
-            src="https://discord.com/widget?id=1452128644221767733&theme=dark"
-            width="350"
-            height="500"
-            allowtransparency="true"
-            frameborder="0"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-          ></iframe>
-        </section>
+          <motion.a
+            href={urls.urls.discord}
+            target="_blank"
+            id="svgButton"
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1, transition:{type: "spring"}, ease: [.50, .25, .4, 1] ,duration: .25}}
+            animate={{ rotateY: [0, 360, 0] }}
+            transition={{ duration: 12, repeat: Infinity, repeatType: "reverse" }}
+          >{discord_svg}</motion.a>
+
+          <motion.video
+            tabIndex={-1}
+            autoPlay
+            loop
+          >
+            <source
+              src="./assets/discordLoop.webm"
+              type="video/webm"
+            ></source>
+          </motion.video>
+        </motion.section>
 
         <Foot />
       </PageFx>

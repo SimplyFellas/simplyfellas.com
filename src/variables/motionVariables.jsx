@@ -1,4 +1,5 @@
 import { delay, stagger } from "motion";
+import { feGaussianBlur } from "motion/react-client";
 
 export let containerAnimation = {
   show: {
@@ -10,6 +11,9 @@ export let containerAnimation = {
   hide: {
     opacity: 0,
   },
+  exit: {
+    opacity: 0,
+  }
 };
 
 export let sectionsAnimation = {
@@ -24,6 +28,9 @@ export let sectionsAnimation = {
   hide: {
     opacity: 0,
   },
+  exit: {
+    opacity: 0,
+  }
 };
 
 export let itemAnimation = {
@@ -31,13 +38,17 @@ export let itemAnimation = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 1,
+      duration: .5,
     }
   },
   hide: {
     opacity: 0,
-    y: -12,
+    y: -24,
   },
+  exit: {
+    opacity: 0,
+    y: 24,
+  }
 };
 
 export let delayedItemAnimation = {
@@ -54,3 +65,5 @@ export let delayedItemAnimation = {
     y: -12,
   },
 };
+
+export const viewportConfig = { once: false, amount: "some" };

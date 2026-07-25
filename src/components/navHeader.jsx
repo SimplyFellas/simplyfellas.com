@@ -25,7 +25,6 @@ function Hambor({navState}) {
   return (
     // button to trigger the dropdown
     <motion.nav
-      key={0}
       id="phone_nav"
       initial={{ opacity: 0, y: -32}}
       animate={{ opacity: 1, y: 0}}
@@ -70,7 +69,6 @@ export default function NavHeader() {
           initial="hide"
           animate="show"
         >
-
           <motion.div id="modpackLogo" variants={containerAnimation}>
             {logo_svg}
           </motion.div>
@@ -80,7 +78,6 @@ export default function NavHeader() {
               SimplyFellas
             </Link>
           </motion.span>
-
         </motion.div>
 
         <motion.button
