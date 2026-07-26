@@ -258,7 +258,7 @@ function App() {
                 </Link>
               </motion.span>
 
-              <motion.a href={urls.urls.wabbanode} variants={itemAnimation}><img src="./assets/wabbanode.png" id="wabbanode" alt="Wabbanode server sponsor"></img></motion.a>
+              <motion.a href={urls.urls.wabbanode} target="_blank" variants={itemAnimation}><img src="./assets/wabbanode.png" id="wabbanode" alt="Wabbanode server sponsor"></img></motion.a>
 
             </motion.div>
           </motion.section>
@@ -423,16 +423,28 @@ function App() {
             transition={{ duration: 12, repeat: Infinity, repeatType: "reverse" }}
           >{discord_svg}</motion.a>
 
-          <motion.video
+          <motion.img
+            src="./assets/discordLoop.gif"
+            id="discordLoop"
+            alt="your device does not support the formats unfortunately"
+          >
+          </motion.img>
+
+          {/* <motion.video
             tabIndex={-1}
             autoPlay
             loop
+            preload="auto"
           >
-            <source
+            <motion.source
+              src="./assets/discordLoop.mp4"
+              type="video/mp4"
+            ></motion.source>
+            <motion.source
               src="./assets/discordLoop.webm"
               type="video/webm"
-            ></source>
-          </motion.video>
+            ></motion.source>
+          </motion.video>*/}
         </motion.section>
 
         <Foot />

@@ -546,6 +546,7 @@ body {
     @media screen and (min-width: 768px) {
         & h2 {
             font-size: 3rem;
+            margin-block: 160px;
 
             & strong {
                 font-size: 5rem;
@@ -554,10 +555,10 @@ body {
 
         & .breaker_container{
             & .top{
-                bottom: -30%;
+                bottom: 0%;
             }
             & .bottom{
-                top: -30%;
+                top: 0%;
             }
         }
     }
@@ -591,7 +592,7 @@ body {
         /*max-width: 1920px;*/
 
         & h2{
-            margin-block: 240px;
+            margin-block: 420px;
         }
 
         & .breaker_container{
@@ -604,7 +605,7 @@ body {
                 bottom: -160%;
             }
             & .bottom{
-                top: -80%;
+                top: -200%;
             }
         }
     }
@@ -680,6 +681,11 @@ body {
                 font-size: 8rem;
                 filter: drop-shadow(0px 4px 0.4rem  rgba(8,8,8,50%));
             }
+        }
+
+        @media screen and (min-width: 1600px) {
+            padding-inline: 32px;
+
         }
     }
 
@@ -848,7 +854,7 @@ body {
         padding-inline: 16px;
     }
 
-    & video{
+    & #discordLoop{
         height: 640px;
     }
 
@@ -884,14 +890,14 @@ body {
         min-height: 1080px;
         padding-block: 160px;
 
-        & video{
+        & #discordLoop{
             height: 720px;
         }
     }
 
     @media screen and (min-width: 1080px) {
         padding-block: 240px;
-        & video{
+        & #discordLoop{
             height: 1080px;
         }
     }
@@ -931,14 +937,14 @@ body {
 
     & .pbreak1{
         width: 100%;
-        height: fit-content;
+        height: auto;
         position: absolute;
         bottom: 0px;
     }
 
     & .pbreak2{
         width: 100%;
-        height: fit-content;
+        height: auto;
         position: absolute;
         top: -32px;
     }
@@ -1095,14 +1101,20 @@ body {
         width: 100%;
         border-radius: 1rem;
         padding-block: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: var(--sec-color-1);
         p{
             text-align: center;
             font-family: var(--font-jersey);
             font-size: 1rem;
-            color: var(--sec-color-1);
             margin-block: 1rem;
-
             & a{
+                color: var(--accent-color-1);
+            }
+            & a:visited{
                 color: var(--accent-color-1);
             }
         }
@@ -1280,7 +1292,7 @@ body {
     @media screen and (min-width: 1280px) {
         max-width: 1280px;
         margin-inline: auto;
-        overflow-x: visible;
+        overflow-x: hidden;
         & footer{
 
             & #disclaimer{
@@ -1290,8 +1302,6 @@ body {
                 & #right_half{
                     right: -80px;
                 }
-
-
 
                 & i {
                     max-width: 768px;
@@ -1588,9 +1598,13 @@ body {
 
 @media screen and (min-width: 1920px) {
     & .pageBreaker{
-        height: 140px;
+        height: 200px;
         max-width: 1920px;
         margin-inline: auto;
+
+        & img{
+            top: -10%;
+        }
     }
 
 }
