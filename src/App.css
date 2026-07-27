@@ -167,6 +167,8 @@ body {
 
 #wabbanode {
     width: 100%;
+    z-index: 5;
+    position: relative;
 }
 
 #navDisabled {
@@ -543,10 +545,29 @@ body {
         }
     }
 
+    @media screen and (min-width: 540px) {
+        & h2 {
+            margin-block: 40px;
+
+            & strong {
+
+            }
+        }
+
+        & .breaker_container{
+            & .top{
+                bottom: -5%;
+            }
+            & .bottom{
+                top: -5%;
+            }
+        }
+    }
+
     @media screen and (min-width: 768px) {
         & h2 {
             font-size: 3rem;
-            margin-block: 160px;
+            margin-block: 80px;
 
             & strong {
                 font-size: 5rem;
@@ -554,6 +575,42 @@ body {
         }
 
         & .breaker_container{
+            & .top{
+                bottom: -25%;
+            }
+            & .bottom{
+                top: -25%;
+            }
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+
+        & .breaker_container{
+            & .top{
+                bottom: -65%;
+            }
+            & .bottom{
+                top: -65%;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+
+        & .breaker_container{
+            height: 260px;
+            margin-inline: auto;
+
+            & h2 {
+                font-size: 3rem;
+                margin-block: 120px;
+
+                & strong {
+                    font-size: 5rem;
+                }
+            }
+
             & .top{
                 bottom: 0%;
             }
@@ -563,49 +620,25 @@ body {
         }
     }
 
-    @media screen and (min-width: 960px) {
-
-        & .breaker_container{
-            & .top{
-                bottom: -60%;
-            }
-            & .bottom{
-                top: -60%;
-            }
-        }
-    }
-
-    @media screen and (min-width: 1280px) {
-
-        & .breaker_container{
-            & .top{
-                bottom: -100%;
-            }
-            & .bottom{
-                top: -100%;
-            }
-        }
-    }
-
     @media screen and (min-width: 1600px) {
         height: 960px;
         /*max-width: 1920px;*/
 
         & h2{
-            margin-block: 420px;
+            margin-block: 140px;
         }
 
         & .breaker_container{
-            height: 160px;
+            height: 260px;
             width: 100%;
             max-width: 1920px;
-            margin-inline: auto;
+
 
             & .top{
-                bottom: -160%;
+                bottom: 0%;
             }
             & .bottom{
-                top: -200%;
+                top: 0%;
             }
         }
     }
@@ -1292,15 +1325,37 @@ body {
     @media screen and (min-width: 1280px) {
         max-width: 1280px;
         margin-inline: auto;
-        overflow-x: hidden;
+        overflow-x: visible;
+        overflow-y: visible;
         & footer{
 
             & #disclaimer{
                 & #left_half{
-                    left: -80px;
+                    left: -60px;
                 }
                 & #right_half{
-                    right: -80px;
+                    right: -60px;
+                }
+
+                & i {
+                    max-width: 768px;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: 1600px) {
+        max-width: 1600px;
+        margin-inline: auto;
+
+        & footer{
+
+            & #disclaimer{
+                & #left_half{
+                    left: -60px;
+                }
+                & #right_half{
+                    right: -60px;
                 }
 
                 & i {
@@ -1311,9 +1366,9 @@ body {
     }
 
     @media screen and (min-width: 1920px) {
-        max-width: 1920px;
-        margin-inline: auto;
+
         overflow-x: visible;
+        overflow-y: visible;
 
         & .pbreak1{
             bottom: 0px;
@@ -1349,7 +1404,7 @@ body {
     display: flex;
     align-items: start;
     flex-direction: column;
-    gap: 8px;
+    gap: 32px;
 
     font-family: var(--font-poppins);
     color: var(--sec-color-1);
@@ -1357,6 +1412,10 @@ body {
     & h1{
         text-align: center;
         font-family: var(--font-jersey);
+        background-color: var(--pri-color-1);
+        margin: 0;
+        padding: 32px;
+        width: 100%;
     }
 
     & .link{
@@ -1366,7 +1425,10 @@ body {
     }
 
     & main{
-        background-color: var(--pri-color-1);
+        background-color: var(--pri-color-2);
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
     }
 
     & .install-banner{
@@ -1393,9 +1455,15 @@ body {
     & .markdownLog{
         padding-inline: 16px;
 
+        background-color: var(--pri-color-1);
 
         & h1{
-            font-size: 1.5rem
+            font-size: 1.5rem;
+            background-color: var(--pri-color-1);
+            width: fit-content;
+            margin-inline: auto;
+            padding-block: 32px;
+            padding-inline: 0px;
         }
         & h2{
             font-size: 1rem;
@@ -1406,8 +1474,9 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 32px;
         width: 100%;
-        background-color: var(--pri-color-1);
+        background-color: var(--pri-color-2);
     }
 
     & #seeMoreChanges{
@@ -1433,13 +1502,24 @@ body {
     @media screen and (min-width: 1080px){
         flex-direction: row;
         padding-top: 96px;
+        gap: 32px;
 
         & main{
             width: 70%;
+            gap: 32px;
+            display: flex;
+            flex-direction: column;
         }
 
         & #changeList{
             width: 30%;
+        }
+
+        & .install-banner{
+            & img.example{
+                max-width: 960px;
+            }
+
         }
     }
 
@@ -1465,9 +1545,13 @@ body {
         }
     }
 
-    @media screen and (min-width: 1920px){
-        max-width: 1920px;
+    @media screen and (min-width: 1600px){
+        max-width: 1600px;
         margin-inline: auto;
+    }
+
+    @media screen and (min-width: 1920px){
+
 
         & main{
             width: 80%;

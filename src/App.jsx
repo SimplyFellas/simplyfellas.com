@@ -144,7 +144,7 @@ export function Foot() {
           </motion.p>
           <motion.p variants={itemAnimation}>
             Modpack Assembled & Managed by{" "}
-            <a href="https://github.com/UncleTyrone.com" target="_blank" className="link">
+            <a href="https://github.com/UncleTyrone" target="_blank" className="link">
               UncleTyrone
             </a>
           </motion.p>
