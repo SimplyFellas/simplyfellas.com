@@ -61,6 +61,16 @@ function ChangeLogs() {
         target="_blank"
         id="seeMoreChanges"
         variants={itemAnimation}
+        whileHover={{
+          y: -8,
+          transition: { ease: "easeInOut" },
+          duration: 0.25,
+        }}
+        whileFocus={{
+          y: -8,
+          transition: { ease: "easeInOut" },
+          duration: 0.25,
+        }}
       >
         See all Changes
       </motion.a>
@@ -73,9 +83,9 @@ export default function Downloads() {
     <PageFx>
       <NavHeader />
 
-      <motion.section
-        id="wrapper_downloads"
-      >
+      <motion.section id="wrapper_downloads" initial={{y: 0}} >
+        <div id="content">
+
         <motion.main
           variants={containerAnimation}
           animate="show"
@@ -106,7 +116,8 @@ export default function Downloads() {
               haven't already. Launch it, then set up your account. Once you're
               set up, click the "Add Instance" button in the main screen
             </motion.p>
-            <motion.img variants={itemAnimation}
+            <motion.img
+              variants={itemAnimation}
               src="./assets/downloadExamples/prism-ex-1.webp"
               className="example"
               loading="lazy"
@@ -126,7 +137,8 @@ export default function Downloads() {
               alt="prism method picture example 2"
               variants={itemAnimation}
             ></motion.img>
-            <motion.img variants={itemAnimation}
+            <motion.img
+              variants={itemAnimation}
               src="./assets/downloadExamples/prism-ex-3.webp"
               className="example"
               loading="lazy"
@@ -141,7 +153,9 @@ export default function Downloads() {
               SimplyFellas modpack!
             </motion.p>
 
-            <motion.h2 variants={itemAnimation}>Another way is to download via the CurseForge website:</motion.h2>
+            <motion.h2 variants={itemAnimation}>
+              Another way is to download via the CurseForge website:
+            </motion.h2>
             <motion.img
               src="./assets/downloadExamples/prism-ex-4.webp"
               className="example"
@@ -194,9 +208,7 @@ export default function Downloads() {
               alt="curse forge method picture example 1"
               variants={itemAnimation}
             ></motion.img>
-            <motion.p
-              variants={itemAnimation}
-            >
+            <motion.p variants={itemAnimation}>
               Download the app: once it's done, search within the app or click
               the install button on the website to download the modpack. Wait a
               little, then you are ready to start your journey by yourself or
@@ -225,24 +237,31 @@ export default function Downloads() {
           <motion.h1 variants={itemAnimation}>Latest Change</motion.h1>
           <ChangeLogs />
         </motion.aside>
+
+        </div>
+
+        <motion.div
+          id="otherOptions"
+          variants={containerAnimation}
+          whileInView="show"
+          initial="hide"
+        >
+          <motion.h2 variants={itemAnimation}>
+            Other Launchers & Options
+          </motion.h2>
+          <motion.p variants={itemAnimation}>
+            We will provide install instructions for other launchers at a later
+            date. For now please follow either of these for the time being. If you
+            like to stay up to date: consider joining our{" "}
+            <motion.a href={urls.urls.discord} target="_blank" className="link">
+              Discord Server!
+            </motion.a>
+          </motion.p>
+        </motion.div>
+
       </motion.section>
 
-      <motion.div
-        id="otherOptions"
-        variants={containerAnimation}
-        whileInView="show"
-        initial="hide"
-      >
-        <motion.h2 variants={itemAnimation}>Other Launchers & Options</motion.h2>
-        <motion.p variants={itemAnimation}>
-          We will provide install instructions for other launchers at a later
-          date. For now please follow either of these for the time being. If you
-          like to stay up to date: consider joining our{" "}
-          <motion.a href={urls.urls.discord} target="_blank" className="link">
-            Discord Server!
-          </motion.a>
-        </motion.p>
-      </motion.div>
+
 
       <Foot />
     </PageFx>
