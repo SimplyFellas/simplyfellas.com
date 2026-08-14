@@ -241,7 +241,7 @@ function App() {
               A vanilla+ Modpack for friends by friends.
             </motion.p>
 
-            {/* <ModpackInfo />*/}
+            <ModpackInfo />
 
             <motion.div
               className="justify-col gap32px"

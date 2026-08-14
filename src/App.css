@@ -1530,6 +1530,8 @@ body {
     @media screen and (min-width: 1080px){
 
         background-size: 101dvw auto;
+        background-position: top;
+        background-attachment: fixed;
 
         & #content{
             flex-direction: row;
