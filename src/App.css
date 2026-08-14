@@ -6,7 +6,7 @@
     --sec-color-1: #f1f1f1;
     --sec-color-2: #f5f5f5;
 
-    --accent-color-1: #3592cc;
+    --accent-color-1: #02A7cc;
     --accent-color-2: #418e37;
 
     --font-poppins: "Poppins", sans-serif;
@@ -23,9 +23,7 @@ html {
     background-size: 10%;
     background-repeat: repeat;
     image-rendering: crisp-edges;
-
     scrollbar-width: none;
-
     scroll-behavior: smooth;
 
 }
@@ -160,6 +158,13 @@ body {
 
 .gap32px{
     gap: 32px;
+}
+
+.gradient_1{
+    position: relative;
+    bottom: 160px;
+    height: 160px;
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0), var(--pri-color-2));
 }
 
 
@@ -1393,6 +1398,12 @@ body {
     }
 }
 
+
+#websiteContent{
+    position: relative;
+}
+
+
 #wrapper_downloads {
     overflow-x: hidden;
     position: relative;
@@ -1409,7 +1420,7 @@ body {
     background-size: auto 101dvh;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: #02A7cc;
+    background-color: var(--accent-color-1);
     background-attachment: fixed;
 
     font-family: var(--font-poppins);
@@ -1424,7 +1435,7 @@ body {
         position: relative;
     }
 
-    & h1{
+    & h1.sectionHeader{
         text-align: center;
         font-family: var(--font-jersey);
         /*background-color: var(--pri-color-1);*/
@@ -1453,6 +1464,16 @@ body {
         padding: 16px;
         filter: drop-shadow(0px 2px 1px var(--pri-color-2));
 
+        &::after{
+            display: block;
+            width: 100%;
+            height: 24px;
+            position: relative;
+            background-color: transparent;
+            background-image: url("/assets/copperBreaker.webp");
+            background-size: contain;
+            content: "";
+        }
 
         & img.example{
             width: 100%;
@@ -1463,9 +1484,7 @@ body {
         }
         &#prism-install{
             /*background-color: #99CD61;*/
-
         }
-
         &#multimc-install{
             /*background-color: #6D4C34;*/
         }
@@ -1475,6 +1494,9 @@ body {
     & .markdownLog{
         padding-inline: 16px;
         background-color: transparent;
+
+        filter: drop-shadow(0px 2px 1px var(--pri-color-2));
+
 
         & h1{
             font-size: 1.5rem;
@@ -1497,8 +1519,6 @@ body {
         gap: 16px;
         width: 100%;
         background-color: transparent;
-
-        filter: drop-shadow(0px 2px 1px var(--pri-color-2));
     }
 
     & #seeMoreChanges{
@@ -1539,19 +1559,33 @@ body {
         }
 
         & main{
-            width: 70%;
+            width: 60%;
             gap: 16px;
             display: flex;
             flex-direction: column;
         }
 
         & #changeList{
-            width: 30%;
+            width: 40%;
         }
 
         & .install-banner{
+
+            &::after{
+                max-width: 960px;
+            }
+
+            & h2, & h3{
+                max-width: 768px;
+                width: fit-content;
+            }
+
             & img.example{
                 max-width: 960px;
+            }
+
+            & p{
+                max-width: 768px;
             }
 
         }
@@ -1560,11 +1594,11 @@ body {
     @media screen and (min-width: 1280px){
 
         & main{
-            width: 50%;
+            width: 65%;
         }
 
         & #changeList{
-
+            width: 35%;
         }
 
         & .install-banner{
@@ -1581,15 +1615,25 @@ body {
     }
 
     @media screen and (min-width: 1600px){
-        max-width: 1600px;
-        margin-inline: auto;
+        & main{
+            width: 70%;
+        }
+
+        & #changeList{
+            width: 30%;
+        }
 
     }
 
     @media screen and (min-width: 1920px){
+        max-width: 1920px;
+        margin-inline: auto;
 
         & main{
-            width: 80%;
+            max-width: 1200px;
+        }
+        & #changeList{
+            max-width: 400px;
         }
     }
 }

@@ -78,6 +78,14 @@ function ChangeLogs() {
   );
 }
 
+function GradientBreaker()
+{
+  return (
+    <div className="gradient_1">
+    </div>
+  )
+}
+
 export default function Downloads() {
   return (
     <PageFx>
@@ -91,7 +99,7 @@ export default function Downloads() {
           animate="show"
           initial="hide"
         >
-          <motion.h1 variants={itemAnimation}>Ways to play!</motion.h1>
+          <motion.h1 variants={itemAnimation} className="sectionHeader">Ways to play!</motion.h1>
 
           <motion.section
             className="install-banner"
@@ -234,7 +242,7 @@ export default function Downloads() {
           animate="show"
           initial="hide"
         >
-          <motion.h1 variants={itemAnimation}>Latest Change</motion.h1>
+          <motion.h1 variants={itemAnimation} className="sectionHeader">Latest Change</motion.h1>
           <ChangeLogs />
         </motion.aside>
 
@@ -261,7 +269,7 @@ export default function Downloads() {
 
       </motion.section>
 
-
+      <GradientBreaker/>
 
       <Foot />
     </PageFx>

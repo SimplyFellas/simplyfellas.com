@@ -8,23 +8,23 @@ import ScrollSmoother from "gsap/ScrollSmoother";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function PageFx({ children }) {
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
   // the children prop apparently is special
   // in that it allows the elements passed in between
   // the compoent declaration to be read
   const location = useLocation()
   useEffect(() => { window.scrollTo(0, 0) }, [location.pathname])
 
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
-  useGSAP(() => {
-    ScrollSmoother.create({
-      wrapper: "#root",
-      content: "#websiteContent",
-      smooth: 2,
-      effects: true,
-      normalizeScroll: false,
-    });
-  });
+  // useGSAP(() => {
+  //   ScrollSmoother.create({
+  //     wrapper: "#root",
+  //     content: "#websiteContent",
+  //     smooth: 2,
+  //     effects: true,
+  //     normalizeScroll: false,
+  //   });
+  // });
 
   return (<motion.div
     initial={{ opacity: 0 }}
