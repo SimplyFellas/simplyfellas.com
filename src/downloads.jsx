@@ -91,7 +91,8 @@ export default function Downloads() {
     <PageFx>
       <NavHeader />
 
-      <motion.section id="wrapper_downloads" initial={{y: 0}} >
+      <motion.section id="wrapper_downloads" initial={{ y: 0 }} >
+        <div id="downloadsBg">
         <div id="content">
 
         <motion.main
@@ -265,7 +266,9 @@ export default function Downloads() {
               Discord Server!
             </motion.a>
           </motion.p>
-        </motion.div>
+          </motion.div>
+
+        </div>
 
       </motion.section>
 

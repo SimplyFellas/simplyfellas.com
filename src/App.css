@@ -8,6 +8,7 @@
 
     --accent-color-1: #02A7cc;
     --accent-color-2: #418e37;
+    --accent-color-3: #F7A654;
 
     --font-poppins: "Poppins", sans-serif;
     --font-inter: "Inter", sans-serif;
@@ -1416,21 +1417,27 @@ body {
     flex-direction: column;
     gap: 16px;
 
-    background-image: url("/assets/downloadsBg.webp");
-    background-size: auto 101dvh;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: var(--accent-color-1);
-    background-attachment: fixed;
-
+    background-image:
+        linear-gradient(to bottom, var(--accent-color-1), var(--accent-color-3));
     font-family: var(--font-poppins);
     color: var(--sec-color-1);
+
+    & #downloadsBg{
+        width: 100%;
+
+        background-image: url("/assets/downloadsBg.webp");
+        background-size: auto 101dvh;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
 
     & #content{
         display: flex;
         flex-direction: column;
         width: fit-content;
         margin-inline: auto;
+
 
         position: relative;
     }
@@ -1551,7 +1558,11 @@ body {
 
         background-size: 101dvw auto;
         background-position: top;
-        background-attachment: fixed;
+        background-attachment: scroll;
+
+        & #downloadsBg{
+            background-size: 101dvw auto;
+        }
 
         & #content{
             flex-direction: row;
